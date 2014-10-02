@@ -19,7 +19,7 @@ addEvent = function(ob, type, fn ) {
 var timer;
 timerReset = function(timer) {
    if (timer) clearTimeout(timer); 
-   timer = setTimeout(function() {location.reload(true);},1800);
+   timer = setTimeout(function() {location.reload(true);},18000);
 }
 
 addEvent(window, 'mousedown', timerReset);
