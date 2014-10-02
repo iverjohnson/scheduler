@@ -97,7 +97,8 @@ addEvent(window, 'keydown', timerReset);
 		scheduler.config.details_on_create=true;
 		scheduler.config.details_on_dblclick=true;
 		scheduler.config.xml_date="%Y-%m-%d %H:%i:%s";
-
+		
+		//Set up color by event type
 		scheduler.templates.event_class=function(start, end, event){
 				var css = "";
 
@@ -110,14 +111,16 @@ addEvent(window, 'keydown', timerReset);
 				return css; // default return
 				};
 				
+				//Set up displayed title in bar
 				scheduler.templates.event_bar_text = function(start,end,event){
-      return event.ptname;
-};
+					return event.ptname;
+				};
 				
 		//===============
 		//Configuration
 		//===============	
 		
+		//Y axis rows
 		elements = [
 			{key:130, label:"Community Paramedic", open:true, children: [
 				{key:140, label:"Eric Ollila<br/>651-724-1314"},
@@ -147,7 +150,7 @@ addEvent(window, 'keydown', timerReset);
 			
 		});
 		
-		
+			//Appointment Types
 			var appointmenttype = [
 			
 			{key:202, label:'CP Initial'},
@@ -160,11 +163,11 @@ addEvent(window, 'keydown', timerReset);
 		
 		
 			
-			
+			//Labels for lightbox
 			scheduler.locale.labels.section_appttype = "Appointment Type";
 			scheduler.locale.labels.section_ptname = "Pt. Initials";
 			
-			
+			//lightbox sections
 		scheduler.config.lightbox.sections=[	
 			{name:"ptname", height:30, map_to:"ptname", type:"textarea", focus:true},
 			{name:"description", height:60, map_to:"text", type:"textarea"},
@@ -173,10 +176,12 @@ addEvent(window, 'keydown', timerReset);
 			{name:"time", height:72, type:"time", map_to:"auto"}
 		];
 		
+		//prevent scheduling off hours
 		scheduler.blockTime({  
 		days:  [1,2,3,4,5],
 		zones: [8*60, 16*60], invert_zones:true,
 		});
+		//prevent scheduling weekends
 		scheduler.blockTime({  
 		days:  [0,6],
 		zones: "fullday"
@@ -192,7 +197,8 @@ addEvent(window, 'keydown', timerReset);
 		
 
 	}
-					function show_minical(){
+		//Show mini calendar
+		function show_minical(){
 		if (scheduler.isCalendarVisible())
 			scheduler.destroyCalendar();
 		else
