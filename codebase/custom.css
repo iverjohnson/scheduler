@@ -6,11 +6,14 @@
 div#instructions {
 	width:48%;
 	padding-left:20px;
+	float:left;
+	list-style:none;
 }
 
 div#notes {
 	width:48%;
 	float:right;
+	list-style:none;
 }
 html, body{
 	margin:0px;
