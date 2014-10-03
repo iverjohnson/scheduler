@@ -36,55 +36,12 @@ addEvent(window, 'keydown', timerReset);
 	<script src="codebase/ext/dhtmlxscheduler_editors.js" type="text/javascript" charset="utf-8"></script>
 	<script src="codebase/ext/dhtmlxscheduler_minical.js" type="text/javascript" charset="utf-8"></script>
 	<script src="codebase/ext/dhtmlxscheduler_collision.js"></script>
+	<link rel='stylesheet' type='text/css' href='codebase/custom.css'>
 	
 	
 </head>
 
 	
-<style type="text/css" media="screen">
-	html, body{
-		margin:0px;
-		padding:0px;
-		height:100%;
-		overflow:hidden;
-	}	
-	.one_line{
-		white-space:nowrap;
-		overflow:hidden;
-		padding-top:5px; padding-left:5px;
-		text-align:left !important;
-		
-	}
-	.dhx_cal_event.event_202 div, .dhx_cal_event_line.event_202{
-			background-color: orange !important;
-			border-color: #a36800 !important;
-			background-image:none; !important;
-		}
-		.dhx_cal_event_clear.event_202{
-			color:orange !important;
-		}
-
-		.dhx_cal_event.event_203 div, .dhx_cal_event_line.event_203{
-			background-color: #36BD14 !important;
-			border-color: #698490 !important;
-			background-image:none; !important;
-		}
-		.dhx_cal_event_clear.event_203{
-			color:#36BD14 !important;
-		}
-		.dhx_cal_event.event_204 div, .dhx_cal_event_line.event_204{
-			background-color: #707069 !important;
-			border-color: #698490 !important;
-			background-image:none; !important;
-		}
-		.dhx_cal_event_clear.event_204{
-			color:#707069 !important;
-		}
-
-
-
-		
-</style>
 
 <script type="text/javascript" charset="utf-8">
 	if (!window.dhtmlXCombo)
@@ -238,11 +195,21 @@ addEvent(window, 'keydown', timerReset);
 		<div class="dhx_cal_data">
 		</div>		
 	</div>
-	<div id="instructions" style="padding-left:30px;">
-		<ul style="font-size:20px;">Notes:
+	<div id="footer">
+		<div id="instructions">
+			<ul style="font-size:24px;">Instructions:
+				<li style="font-size:20px;">1. Locate date using mini-calendar or arrows</li>
+				<li style="font-size:20px;">2. Double click on the requested start time in the row of the appropriate CP</li>
+				<li style="font-size:20px;">3. Enter patients initials, ignore the description box, choose CP-Initial or CP-Follow-up, and select the appropriate end time</li>
+				<li style="font-size:20px;">4. Click save button.</li>
+				<li style="font-size:20px;">5. Be sure information is entered into RightCAD.</li>
+				<li style="font-size:20px;">To change or delete an appointment, double click it.</li>
+		</div>
+		<div id="notes">
+			<ul style="font-size:20px;">Notes:
 			<li style="font-size:14px;">Check <a href="http://emsmanager.net/healtheast" target="_blank">EMS Manager</a> for on-duty Community Paramedic</li>
 			<li style="font-size:14px;">CP-Initial Visits are 90 minutes</li>
 			<li style="font-size:14px;">CP-Follow-up Visits are 60 minutes</li>
-		</ul>
-	</div>
+			</ul>
+		</div>
 </body>
