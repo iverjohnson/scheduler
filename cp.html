@@ -134,9 +134,10 @@ addEvent(window, 'keydown', timerReset);
 		];
 		
 		//prevent scheduling off hours
-		scheduler.blockTime({  
+		scheduler.addMarkedTimespan({  
 		days:  [1,2,3,4,5],
 		zones: [8*60, 16*60], invert_zones:true,
+		css:"gray_section"
 		});
 		//prevent scheduling weekends
 		scheduler.blockTime({  
