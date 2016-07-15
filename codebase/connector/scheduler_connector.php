@@ -1,5 +1,4 @@
 <?php
-
 /*
 	@author dhtmlx.com
 	@license GPL, see license.txt

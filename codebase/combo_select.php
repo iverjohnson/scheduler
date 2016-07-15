@@ -9,8 +9,9 @@
 		if (isset($_GET['id']))
 			$filter->add("id", $_GET['id'], '=');
 	}	
-
-	$combo->dynamic_loading(3);
-	$combo->render_table("facilities","id","name");
+	$combo->enable_log("log.txt");
+	$combo->dynamic_loading(6);
+	$combo->render_table("facilities","id","name(label), city");
+	//$combo->render_sql("Select *,CONCAT(name,'-',city) as label FROM facilities", "name", "name(label)")
 
 ?>

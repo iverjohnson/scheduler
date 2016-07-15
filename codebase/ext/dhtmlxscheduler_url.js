@@ -1,10 +1,10 @@
 /*
-dhtmlxScheduler v.4.1.0 Stardard
+@license
+dhtmlxScheduler v.4.3.1 
 
-This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
+This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
 */
-scheduler.attachEvent("onTemplatesReady",function(){var e=!0,t=scheduler.date.str_to_date("%Y-%m-%d"),r=scheduler.date.date_to_str("%Y-%m-%d");scheduler.attachEvent("onBeforeViewChange",function(s,a,i,n){if(e){e=!1;for(var d={},l=(document.location.hash||"").replace("#","").split(","),o=0;o<l.length;o++){var _=l[o].split("=");2==_.length&&(d[_[0]]=_[1])}if(d.date||d.mode){try{this.setCurrentView(d.date?t(d.date):null,d.mode||null)}catch(c){this.setCurrentView(d.date?t(d.date):null,i)}return!1}}var h="#date="+r(n||a)+",mode="+(i||s);
-return document.location.hash=h,!0})});
-//# sourceMappingURL=../sources/ext/dhtmlxscheduler_url.js.map
+Scheduler.plugin(function(e){e._get_url_nav=function(){for(var e={},t=(document.location.hash||"").replace("#","").split(","),a=0;a<t.length;a++){var n=t[a].split("=");2==n.length&&(e[n[0]]=n[1])}return e},e.attachEvent("onTemplatesReady",function(){function t(t){r=t,e.getEvent(t)&&e.showEvent(t)}var a=!0,n=e.date.str_to_date("%Y-%m-%d"),i=e.date.date_to_str("%Y-%m-%d"),r=e._get_url_nav().event||null;e.attachEvent("onAfterEventDisplay",function(e){return r=null,!0}),e.attachEvent("onBeforeViewChange",function(s,d,_,o){
+if(a){a=!1;var l=e._get_url_nav();if(l.event)try{if(e.getEvent(l.event))return t(l.event),!1;var c=e.attachEvent("onXLE",function(){t(l.event),e.detachEvent(c)})}catch(h){}if(l.date||l.mode){try{this.setCurrentView(l.date?n(l.date):null,l.mode||null)}catch(h){this.setCurrentView(l.date?n(l.date):null,_)}return!1}}var u=["date="+i(o||d),"mode="+(_||s)];r&&u.push("event="+r);var v="#"+u.join(",");return document.location.hash=v,!0})})});

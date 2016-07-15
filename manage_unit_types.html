@@ -1,0 +1,64 @@
+<!doctype html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Manage Units</title>
+    <link rel="STYLESHEET" type="text/css" href="./codebase/dhtmlx.css">
+    <script src="./codebase/dhtmlx.js"></script>
+	<script src="./codebase/ext/timeselector.js"></script>
+	
+	<script>
+ 
+ function addUnitType(){
+	var newId = (new Date()).valueOf();	//creates a unique row id     
+	mygrid.addRow(newId,"New Unit Type",mygrid.getRowsNum());   //adds a new row    
+	mygrid.selectRowById(newId);                //selects the newly created row 
+}
+
+function removeUnitType(){    
+	var selId = mygrid.getSelectedId();       //gets the Id of the selected row    
+	mygrid.deleteRow(selId);            //deletes the row with the specified id
+}
+
+function doOnLoad(){
+//=====================
+//Menu
+//=====================
+
+	var mainMenu;
+	mainMenu = new dhtmlXMenuObject("menuID");	
+	mainMenu.addNewSibling(null, 1, "Scheduling");
+		mainMenu.setHref(1,"./medkab.html");
+	mainMenu.addNewSibling(1, 2, "Manage Units");
+		mainMenu.setHref(2,"./manage_units.html");
+	mainMenu.addNewSibling(2, 3, "Manage Units Types");
+		mainMenu.setHref(3,"./manage_unit_types.html");
+	mainMenu.addNewSibling(3,4,"Manage Event Types");
+		mainMenu.setHref(4,"./manage_event_types.html");
+	
+	
+	
+	
+	mygrid = new dhtmlXGridObject('gridbox');
+			mygrid.enableAutoHeight(true);
+			mygrid.enableAutoWidth(true);
+			mygrid.setImagePath("./codebase/imgs/");
+			mygrid.setHeader("Type");//the headers of columns
+			mygrid.setColTypes("ed");
+			mygrid.setInitWidths("250");          //the widths of columns
+			mygrid.setColAlign("left");
+			mygrid.setColSorting("str"); 
+			mygrid.init();
+		mygrid.load("./codebase/manage_unit_types_connector.php");
+		var dp = new dataProcessor("./codebase/manage_unit_types_connector.php");
+		dp.init(mygrid);
+}
+ </script>
+</head>
+<body onload="doOnLoad();">
+	<div id="menuID" style="margin-bottom:20px;"></div>
+		<button onclick="addUnitType()">Add Unit Type</button>
+		<button onclick="removeUnitType()">Delete Unit Type</button>
+    <div id="gridbox">></div> 
+		 
+    
+</body>

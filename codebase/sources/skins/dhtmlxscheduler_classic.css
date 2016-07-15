@@ -249,6 +249,7 @@ div.dhx_modal_cover {
   color: #887A2E;
   cursor: pointer;
   overflow: hidden;
+  white-space: nowrap;
 }
 .dhx_cal_event_clear {
   font-family: Tahoma;

@@ -1,0 +1,67 @@
+<!doctype html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Manage Units</title>
+    <link rel="STYLESHEET" type="text/css" href="./codebase/dhtmlx.css">
+    <script src="./codebase/dhtmlx.js"></script>
+	
+	<script>
+
+ 
+ function addEventType(){
+	var newId = (new Date()).valueOf();	//creates a unique row id     
+	mygrid.addRow(newId,"New Event Type,0",mygrid.getRowsNum());   //adds a new row    
+	mygrid.selectRowById(newId);                //selects the newly created row 
+}
+
+function removeEventType(){    
+	var selId = mygrid.getSelectedId();       //gets the Id of the selected row    
+	mygrid.deleteRow(selId);            //deletes the row with the specified id
+}
+
+function doOnLoad(){
+//=====================
+//Menu
+//=====================
+
+	var mainMenu;
+	mainMenu = new dhtmlXMenuObject("menuID");	
+	mainMenu.addNewSibling(null, 1, "Scheduling");
+		mainMenu.setHref(1,"./medkab.html");
+	mainMenu.addNewSibling(1, 2, "Manage Units");
+		mainMenu.setHref(2,"./manage_units.html");
+	mainMenu.addNewSibling(2, 3, "Manage Units Types");
+		mainMenu.setHref(3,"./manage_unit_types.html");
+	mainMenu.addNewSibling(3,4,"Manage Event Types");
+		mainMenu.setHref(4,"./manage_event_types.html");
+	
+	
+	
+	
+	mygrid = new dhtmlXGridObject('gridbox');
+			mygrid.enableAutoHeight(true);
+			mygrid.enableAutoWidth(true);
+			mygrid.setImagePath("./codebase/imgs/");
+			mygrid.setHeader("Name, Unit Type");//the headers of columns
+			mygrid.setColTypes("ed,combo");
+				combo = mygrid.getColumnCombo(1);//takes the column index
+				combo.enableFilteringMode(true);
+				combo.load("./codebase/manage_event_types_connector.php");
+			mygrid.setInitWidths("250,250");          //the widths of columns
+			mygrid.setColAlign("left,left");
+			mygrid.setColSorting("str,str"); 
+			mygrid.init();
+		mygrid.load("./codebase/manage_event_types_connector.php");
+		var dp = new dataProcessor("./codebase/manage_event_types_connector.php");
+		dp.init(mygrid);
+}
+ </script>
+</head>
+<body onload="doOnLoad();">
+	<div id="menuID" style="margin-bottom:20px;"></div>
+		<button onclick="addEventType()">Add Event Type</button>
+		<button onclick="removeEventType()">Delete Event Type</button>
+    <div id="gridbox">></div> 
+		 
+    
+</body>

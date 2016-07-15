@@ -1,11 +1,13 @@
 /*
-dhtmlxScheduler v.4.1.0 Stardard
+@license
+dhtmlxScheduler v.4.3.1 
 
-This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
+This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
 */
-scheduler.form_blocks.multiselect={render:function(e){for(var t="<div class='dhx_multi_select_"+e.name+"' style='overflow: auto; height: "+e.height+"px; position: relative;' >",s=0;s<e.options.length;s++)t+="<label><input type='checkbox' value='"+e.options[s].key+"'/>"+e.options[s].label+"</label>",convertStringToBoolean(e.vertical)&&(t+="<br/>");return t+="</div>"},set_value:function(e,t,s,r){function a(t){for(var s=e.getElementsByTagName("input"),r=0;r<s.length;r++)s[r].checked=!!t[s[r].value]}for(var i=e.getElementsByTagName("input"),n=0;n<i.length;n++)i[n].checked=!1;
-var d=[];if(s[r.map_to]){for(var l=(s[r.map_to]+"").split(","),n=0;n<l.length;n++)d[l[n]]=!0;a(d)}else{if(scheduler._new_event||!r.script_url)return;var o=document.createElement("div");o.className="dhx_loading",o.style.cssText="position: absolute; top: 40%; left: 40%;",e.appendChild(o),dhtmlxAjax.get(r.script_url+"?dhx_crosslink_"+r.map_to+"="+s.id+"&uid="+scheduler.uid(),function(t){for(var s=t.doXPath("//data/item"),i=[],n=0;n<s.length;n++)i[s[n].getAttribute(r.map_to)]=!0;a(i),e.removeChild(o)
-})}},get_value:function(e){for(var t=[],s=e.getElementsByTagName("input"),r=0;r<s.length;r++)s[r].checked&&t.push(s[r].value);return t.join(",")},focus:function(){}};
-//# sourceMappingURL=../sources/ext/dhtmlxscheduler_multiselect.js.map
+Scheduler.plugin(function(e){e.form_blocks.multiselect={render:function(e){for(var t="<div class='dhx_multi_select_"+e.name+"' style='overflow: auto; height: "+e.height+"px; position: relative;' >",a=0;a<e.options.length;a++)t+="<label><input type='checkbox' value='"+e.options[a].key+"'/>"+e.options[a].label+"</label>",convertStringToBoolean(e.vertical)&&(t+="<br/>");return t+="</div>"},set_value:function(t,a,n,i){function r(e){for(var a=t.getElementsByTagName("input"),n=0;n<a.length;n++)a[n].checked=!!e[a[n].value];
+
+}for(var s=t.getElementsByTagName("input"),d=0;d<s.length;d++)s[d].checked=!1;var _={};if(n[i.map_to]){for(var o=(n[i.map_to]+"").split(","),d=0;d<o.length;d++)_[o[d]]=!0;r(_)}else{if(e._new_event||!i.script_url)return;var l=document.createElement("div");l.className="dhx_loading",l.style.cssText="position: absolute; top: 40%; left: 40%;",t.appendChild(l),dhtmlxAjax.get(i.script_url+"?dhx_crosslink_"+i.map_to+"="+n.id+"&uid="+e.uid(),function(e){for(var a=e.doXPath("//data/item"),n={},s=0;s<a.length;s++)n[a[s].getAttribute(i.map_to)]=!0;
+
+r(n),t.removeChild(l)})}},get_value:function(e,t,a){for(var n=[],i=e.getElementsByTagName("input"),r=0;r<i.length;r++)i[r].checked&&n.push(i[r].value);return n.join(",")},focus:function(e){}}});

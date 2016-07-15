@@ -44,7 +44,9 @@ addEvent(window, 'keydown', timerReset);
 	
 
 <script type="text/javascript" charset="utf-8">
-	
+	if (!window.dhtmlXCombo)
+			alert("You need to have dhtmlxCombo files, to see full functionality of this sample.");
+
 	function init() {
 
 		scheduler.locale.labels.timeline_tab = "Timeline";
@@ -79,11 +81,12 @@ addEvent(window, 'keydown', timerReset);
 		elements = [
 			{key:130, label:"Community Paramedic", open:true, children: [
 				{key:140, label:"Eric Ollila<br/>651-724-1314"},
-				{key:150, label:"Kyle OLeary<br/>651-263-2918"},
+				{key:150, label:"Travis Jacobs<br/>651-724-1313"},
 				{key:160, label:"Craig Anderson<br/>651-724-1505"},
 				{key:170, label:"Robert Pankonie<br/>651-232-1754"},
-				{key:190, label:"Jenifer Murphree<br/>651-724-1313"},
-				{key:200, label:"Jennifer Parker<br/>651-995-4705"},
+				{key:180, label:"Chris Schultz<br/>651-326-1722"},
+				{key:190, label:"Jenifer Murphry<br/>"},
+				{key:200, label:"Jennifer Parker<br/>"},
 				{key:210, label:"Other CP"}
 			]}
 		];
@@ -135,7 +138,7 @@ addEvent(window, 'keydown', timerReset);
 		//prevent scheduling off hours
 		scheduler.addMarkedTimespan({  
 		days:  [1,2,3,4,5],
-		zones: [9*60, 16*60], invert_zones:true,
+		zones: [9*60, 15*60], invert_zones:true,
 		css:"gray_section"
 		});
 		//prevent scheduling weekends
@@ -206,12 +209,10 @@ addEvent(window, 'keydown', timerReset);
 				<li style="font-size:20px;">To change or delete an appointment, double click it.</li>
 		</div>
 		<div id="notes">
-			<ul style="font-size:24px;">Notes:
-			<li style="font-size:20px;">Check <a href="http://emsmanager.net/healtheast" target="_blank">EMS Manager</a> for on-duty Community Paramedic</li>
-			<li style="font-size:20px;">Do not schedule appointment start times before 0900</li>
-			<li style="font-size:20px;">Do not schedule appointment start times later than 1500</li>
-			<li style="font-size:20px;">CP-Initial Visits are 90 minutes</li>
-			<li style="font-size:20px;">CP-Follow-up Visits are 60 minutes</li>
+			<ul style="font-size:20px;">Notes:
+			<li style="font-size:14px;">Check <a href="http://emsmanager.net/healtheast" target="_blank">EMS Manager</a> for on-duty Community Paramedic</li>
+			<li style="font-size:14px;">CP-Initial Visits are 90 minutes</li>
+			<li style="font-size:14px;">CP-Follow-up Visits are 60 minutes</li>
 			</ul>
 		</div>
 </body>
