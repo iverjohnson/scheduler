@@ -10,5 +10,4 @@
 	$list->sql->attach("Update","UPDATE units SET oos='{oos}' WHERE id={id}");
 	$list->enable_log("log.txt",true);
 	$list->render_sql($sql,"id","name,oos");
-
 ?>
