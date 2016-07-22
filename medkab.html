@@ -3,7 +3,6 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>MedKab Scheduling</title>
 	
-	
 	<script src='codebase/dhtmlxscheduler.js' type="text/javascript" charset="utf-8"></script>
 	<script src="codebase/ext/dhtmlxscheduler_limit.js" type="text/javascript" charset="utf-8"></script>
 	<script src='codebase/ext/dhtmlxscheduler_timeline.js' type="text/javascript" charset="utf-8"></script>
@@ -13,16 +12,11 @@
 	<script src="codebase/ext/dhtmlxscheduler_tooltip.js"></script>
 	<script src="codebase/ext/dhtmlxscheduler_editors.js" type="text/javascript" charset="utf-8"></script>
 	<script src="codebase/ext/dhtmlxscheduler_minical.js" type="text/javascript" charset="utf-8"></script>
-	<script src="codebase/dhtmlxdataprocessor_debug.js"></script>
 	<script src="codebase/dhtmlx.js" type="text/javascript" charset="utf-8"></script>
 	<script src="codebase/mark_complete.js" type="text/javascript" charset="utf-8"></script>
 	<script src="codebase/unit_functions.js" type="text/javascript" charset="utf-8"></script>
 	<link rel='stylesheet' type='text/css' href='codebase/dhtmlx.css'>
-	<link rel='stylesheet' type='text/css' href='codebase/dhtmlxscheduler_flat.css'>
-	
-	
-
-
+	<link rel='stylesheet' type='text/css' href='codebase/dhtmlxscheduler.css'>
 	
 <style type="text/css" media="screen">
 	html, body{
@@ -172,13 +166,15 @@ function init() {
 		scheduler.config.details_on_dblclick=true;
 		scheduler.config.xml_date="%Y-%m-%d %H:%i:%s";
 		scheduler.config.time_step=15;
-		scheduler.config.ajax_error = "alert";
-		scheduler.config.full_day = true;
+		scheduler.config.ajax_error = "console";
+		scheduler.config.update_render = true;
+		scheduler.config.show_loading = true;
+		scheduler.config.prevent_cache = true;
 		
 		
 		
-		elements = scheduler.serverList("units");
-		facilities = scheduler.serverList("facilities");
+		var elements = scheduler.serverList("units");
+		var facilities = scheduler.serverList("facilities");
 		var dstart = new Date();
 		
 		scheduler.createTimelineView({
@@ -192,6 +188,7 @@ function init() {
 			x_start: (dstart.getHours()*4)-8, //automatically forward the calendar view to now minus two hours
 			x_length:5,
 			y_unit: elements,
+			y_property:	"unit_id",
 			render: "tree",
 			folder_events_available: true,
 			event_dy:'full',
@@ -211,7 +208,7 @@ function init() {
 		];
 		
 		scheduler.templates.timeline_scale_label = function(key, label, section){
-			unit = scheduler.getSection(key);
+			var unit = scheduler.getSection(key);
 			if(unit.oos == "0"){
 			var checked = "";
 			}
@@ -221,7 +218,7 @@ function init() {
 			}
 				var unitHtml = "<input type='checkbox' onclick='markOos("+key+");'"+checked+">";
 			return label + unitHtml;
-}	
+}
 			
 	//===============
 	//Lightbox and data
@@ -245,11 +242,11 @@ function init() {
 			}
 		}
 		scheduler.config.lightbox.sections=[	
-			{name: "pickup", height:40,options:facilities, map_to: "pickup", type: "combo", image_path: "codebase/common/dhtmlxCombo/imgs/", filtering: true,  cache: true , focus: true},
-			{name: "dropoff", height:40,options:facilities, map_to: "destination", type: "combo", image_path: "codebase/common/dhtmlxCombo/imgs/", filtering: true,  cache: true },
+			{name:"pickup", height:40,options:facilities, map_to: "pickup", type: "combo", image_path: "codebase/common/dhtmlxCombo/imgs/", filtering: true,  cache: true , focus: true},
+			{name:"dropoff", height:40,options:facilities, map_to: "destination", type: "combo", image_path: "codebase/common/dhtmlxCombo/imgs/", filtering: true,  cache: true },
 			{name:"appttype", height: 40, map_to:"type", type:"radio",options:appointmenttype},
 			{name:"transtime", height: 30, map_to:"transtime", type:"textarea",options:null},
-			{name:"Unit", height:23, type:"timeline", options:null , map_to:"unit_id" }, //type should be the same as name of the tab
+			{name:"unit", height:23, type:"timeline", options:null , map_to:"unit_id" }, //type should be the same as name of the tab
 			{name:"complete", height:23, map_to:"complete", type:"checkbox", checked_value:"1", unchecked_value:"0"},
 			{name:"time", height:72, type:"time", map_to:"auto"}
 		];
@@ -327,8 +324,6 @@ function init() {
 		
 		//connection to DB and init of connection
 		var dp = new dataProcessor("codebase/events_tree_db.php");
-		dp.enableDebug();
-		var currentSkin = 'classic';
 		dp.init(scheduler);
 	}
 	
@@ -373,10 +368,9 @@ function init() {
 	
 </body>
 <script>
-       setInterval(function () {
+     window.setInterval(function () {
 			if(!scheduler.getState().lightbox_id)
             scheduler.clearAll();
             scheduler.load("codebase/events_tree_db.php");
-			//scheduler.updateView();
          }, 10000);
-      </script>
+</script>
