@@ -1,22 +1,21 @@
 <!doctype html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Manage Units</title>
+    <title>Manage Facilities</title>
     <link rel="STYLESHEET" type="text/css" href="./codebase/dhtmlx.css">
     <script src="./codebase/dhtmlx.js"></script>
-	<script src="./codebase/ext/timeselector.js"></script>
-
+	
 	
 	<script>
 
  
- function addUnit(){
+ function addFacility(){
 	var newId = (new Date()).valueOf();	//creates a unique row id     
-	mygrid.addRow(newId,"New Unit,0,0,0",mygrid.getRowsNum());   //adds a new row    
+	mygrid.addRow(newId,"New Facility","","","MN","",mygrid.getRowsNum());   //adds a new row    
 	mygrid.selectRowById(newId);                //selects the newly created row 
 }
 
-function removeUnit(){    
+function removeFacility(){    
 	var selId = mygrid.getSelectedId();       //gets the Id of the selected row    
 	mygrid.deleteRow(selId);            //deletes the row with the specified id
 }
@@ -36,6 +35,8 @@ function doOnLoad(){
 		mainMenu.setHref(3,"./manage_unit_types.html");
 	mainMenu.addNewSibling(3,4,"Manage Event Types");
 		mainMenu.setHref(4,"./manage_event_types.html");
+	mainMenu.addNewSibling(4,5,"Manage Facilities");
+		mainMenu.setHref(5,"./manage_facilities.html");
 	
 	
 	
@@ -44,25 +45,25 @@ function doOnLoad(){
 			mygrid.enableAutoHeight(true);
 			mygrid.enableAutoWidth(true);
 			mygrid.setImagePath("./codebase/imgs/");
-			mygrid.setHeader("Unit, Type, Work Days, Start Time, Off Time");//the headers of columns
-			mygrid.setColTypes("edn,combo,clist,timeselector,timeselector");
-				combo = mygrid.getColumnCombo(1);//takes the column index
+			mygrid.setHeader("Name, Address, City, State, Zip");//the headers of columns
+			mygrid.setColTypes("edn,ed,ed,combo,edn");
+				combo = mygrid.getColumnCombo(3);//takes the column index
 				combo.enableFilteringMode(true);
-				combo.load("./codebase/manage_units_connector.php");
-			mygrid.setInitWidths("100,100,150,150,150");          //the widths of columns
+				combo.load("./codebase/manage_facilities_connector.php");
+			mygrid.setInitWidths("400,400,200,50,50");          //the widths of columns
 			mygrid.setColAlign("left,left, left, left, left");
-			mygrid.setColSorting("int,str,na,na,na"); 
+			mygrid.setColSorting("int,na,str,str, int"); 
 			mygrid.init();
-		mygrid.load("./codebase/manage_units_connector.php");
-		var dp = new dataProcessor("./codebase/manage_units_connector.php");
+		mygrid.load("./codebase/manage_facilities_connector.php");
+		var dp = new dataProcessor("./codebase/manage_facilities_connector.php");
 		dp.init(mygrid);
 }
  </script>
 </head>
 <body onload="doOnLoad();">
 	<div id="menuID" style="margin-bottom:20px;"></div>
-		<button onclick="addUnit()">Add Unit</button>
-		<button onclick="removeUnit()">Delete Unit</button>
+		<button onclick="addFacility()">Add Facility</button>
+		<button onclick="removeFacility()">Delete Facility</button>
     <div id="gridbox">></div> 
 		 
     

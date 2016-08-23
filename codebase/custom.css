@@ -1,66 +1,110 @@
-/*
-	Custom CSS for CP Scheduling site
-	
-*/
-
-div#instructions {
-	width:48%;
-	padding-left:20px;
-	float:left;
-}
-div#instructions ul {
-	list-style:none;
-}
-
-div#notes {
-	width:48%;
-	float:right;
-}
-div#notes ul {
-	list-style:none;
-}
 html, body{
-	margin:0px;
-	padding:0px;
-	height:100%;
-	overflow:hidden;
-}	
-.one_line{
-	white-space:nowrap;
-	overflow:hidden;
-	padding-top:5px; padding-left:5px;
-	text-align:left !important;
+		margin:0px;
+		padding:0px;
+		height:100%;
+		overflow:hidden;
+	}	
+	.schedule_title{
+		font-family: "Segoe UI",Arial;
+		text-align: center;
+		font-size:22px;
+		width:100%;
+	}
+	.one_line{
+		white-space:nowrap;
+		overflow:hidden;
+		padding-top:5px; padding-left:5px;
+		text-align:left !important;
+	}
+	.dhx_cal_event.event_200 div, .dhx_cal_event_line.event_200{
+			background-color: orange !important;
+			border-color: #a36800 !important;
+			background-image:none; !important;
+		}
+		.dhx_cal_event_clear.event_200{
+			color:orange !important;
+		}
+
+		.dhx_cal_event.event_201 div, .dhx_cal_event_line.event_201{
+			background-color: #36BD14 !important;
+			border-color: #698490 !important;
+			background-image:none; !important;
+		}
+		.dhx_cal_event_clear.event_201{
+			color:#36BD14 !important;
+		}
+
+		.dhx_cal_event.event_202 div, .dhx_cal_event_line.event_202{
+			background-color: #FC5BD5 !important;
+			border-color: #839595 !important;
+			background-image:none; !important;
+		}
+		.dhx_cal_event_clear.event_202{
+			color:#B82594 !important;
+		}
+		.dhx_cal_event.event_203 div, .dhx_cal_event_line.event_203{
+			background-color: grey !important;
+			border-color: #839595 !important;
+			background-image:none; !important;
+		}
+		.dhx_cal_event_clear.event_203{
+			color:#B82594 !important;
+		}
+		.dhx_cal_event.event_204 div, .dhx_cal_event_line.event_204{
+			background-color: red !important;
+			border-color: #839595 !important;
+			background-image:none; !important;
+		}
+		.dhx_cal_event_clear.event_204{
+			color:#B82594 !important;
+		}
 		
-}
-.dhx_cal_event.event_202 div, .dhx_cal_event_line.event_202{
-	background-color: orange !important;
-	border-color: #a36800 !important;
-	background-image:none; !important;
-}
-.dhx_cal_event_clear.event_202{
-	color:orange !important;
-}
-
-.dhx_cal_event.event_203 div, .dhx_cal_event_line.event_203{
-	background-color: #36BD14 !important;
-	border-color: #698490 !important;
-	background-image:none; !important;
-}
-.dhx_cal_event_clear.event_203{
-	color:#36BD14 !important;
-}
-.dhx_cal_event.event_204 div, .dhx_cal_event_line.event_204{
-	background-color: #707069 !important;
-	border-color: #698490 !important;
-	background-image:none; !important;
-}
-.dhx_cal_event_clear.event_204{
-	color:#707069 !important;
-}
-.gray_section {
-	background:none repeat 0 0 silver;
-}
-
-
-
-		
+	.dhx_cal_event.event_complete div, .dhx_cal_event_line.event_complete{
+			background-color: #7B7D7D !important;
+			text-decoration: line-through !important;
+			border-color: #839595 !important;
+			background-image:none; !important;
+		}
+		.dhx_cal_event_clear.event_complete{
+			color:#B82594 !important;
+		}
+		.pink{
+			background-color:#ff9898 !important;
+			}
+	.dhx_custom_button{
+		width:40px !important;
+		height:40px !important;
+		border: none !important;
+		background-image:url(codebase/imgs/help-button-icon.png) !important;
+		background-size:30px auto;
+		background-repeat: no-repeat;
+		}
+	.dhx_cal_ltext textarea{
+		width: 62px !important;
+		height:20px !important;
+		margin-top:14px !important;
+		}
+	.dhx_cal_radio{
+		width:400px;
+		}
+	.dhx_section_timeline select{
+		width:auto !important;
+		}
+	.dhtmlx_message_area{
+		right:10% !important;
+		z-index: 20000 !important;
+		top:35% !important;
+		}
+	.dhx_cal_light select {
+		width:auto !important;
+		}
+	.dhxcombo_material{
+		width:70% !important;
+		margin-left: 118px !important;
+		}
+	.dhx_cal_navline{
+		height:40px !important;
+		}
+	.dhx_cal_navline .dhx_cal_date, .dhx_cal_navline div {
+		top:0 !important;
+		}
