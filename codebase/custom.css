@@ -75,7 +75,7 @@ html, body{
 		width:40px !important;
 		height:40px !important;
 		border: none !important;
-		background-image:url(codebase/imgs/help-button-icon.png) !important;
+		background-image:url(../codebase/imgs/help-button-icon.png) !important;
 		background-size:30px auto;
 		background-repeat: no-repeat;
 		}

@@ -100,7 +100,10 @@ function init() {
 		
 		
 		//create units (sections)
+		var oosUnits = scheduler.serverList("oos");
+		console.log(oosUnits);
 		scheduler.templates.timeline_scale_label = function(key, label, section){
+			
 			var unit = scheduler.getSection(key);
 			if(unit.oos == "0"){ //if not OOS, don't check box
 				var checked = "";
@@ -204,8 +207,14 @@ function init() {
 						var offDays = diff(workdays,alldays);
 						
 						if(offDays.length != 0){
+							var b = offDays.indexOf(6);
+							if(b != -1){
+								var newOffDays = [0, offDays[0]+1];
+							} else {
+							var newOffDays = [offDays[0]+1, offDays[1]+1];
+							}
 						scheduler.addMarkedTimespan({days:[offDays], zones:[newTimes[1],1440], type: "dhx_time_block", sections:{timeline:elements[i].key}}); //blocking for off days
-						scheduler.addMarkedTimespan({days:[offDays[0]+1,offDays[1]+1], zones:[0,newTimes[1]], type: "dhx_time_block", sections:{timeline:elements[i].key}}); //blocking second part of off days
+						scheduler.addMarkedTimespan({days:newOffDays, zones:[0,newTimes[1]], type: "dhx_time_block", sections:{timeline:elements[i].key}}); //blocking second part of off days
 				} 
 						
 						scheduler.addMarkedTimespan({days:[workdays],zones:[0,newTimes[1],newTimes[0],1440],invert_zones: true,type:"dhx_time_block",sections:{timeline:elements[i].key}});
@@ -223,6 +232,7 @@ function init() {
 		//connection to DB and init of connection
 		var dp = new dataProcessor("codebase/events_tree_db.php");
 		dp.init(scheduler);
+		dp.setAutoUpdate(2000);
 	
 		
 	}
