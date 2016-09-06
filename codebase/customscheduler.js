@@ -232,7 +232,7 @@ function init() {
 		//connection to DB and init of connection
 		var dp = new dataProcessor("codebase/events_tree_db.php");
 		dp.init(scheduler);
-		dp.setAutoUpdate(12000);
+		//dp.setAutoUpdate(12000);
 	
 		
 	}
