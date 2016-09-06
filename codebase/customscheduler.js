@@ -100,8 +100,8 @@ function init() {
 		
 		
 		//create units (sections)
-		var oosUnits = scheduler.serverList("oos");
-		console.log(oosUnits);
+		//var oosUnits = scheduler.serverList("oos");
+		//console.log(oosUnits);
 		scheduler.templates.timeline_scale_label = function(key, label, section){
 			
 			var unit = scheduler.getSection(key);
