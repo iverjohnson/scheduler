@@ -182,7 +182,7 @@ function init() {
 		
 		//set end date and time
 		scheduler.attachEvent("onEventSave",function(id,ev, is_new){
-			if(ev.type == 200||ev.type==201||ev.type==202||ev.type==207){
+			if(ev.type == 200||ev.type==201||ev.type==202||ev.type==207||ev.type==216){
 				var triptime = parseInt(ev.transtime)+38;
 				var minutes = (parseInt((triptime/15))+1)*15;
 				return ev.end_date = scheduler.date.add(ev.start_date, minutes, 'minute'); //updates end_date based on transport time, rounded up to the next 15 minutes
