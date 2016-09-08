@@ -48,8 +48,11 @@ function init() {
 		
 	//Set up tooltips
 	scheduler.templates.tooltip_text = function(start,end,ev){
+		var facilities = scheduler.serverList("facilities");
+		var pickupCity = facilities.filter(function(obj){return obj.key == ev.pickup});
+		var destinationCity = facilities.filter(function(obj){return obj.key == ev.destination});
 		if (ev.pickup) {
-			return "<b>Pickup:</b> "+scheduler.getLabel("pickup",ev.pickup)+"<br/><b>Destination:</b> " +  scheduler.getLabel("destination",ev.destination);
+			return "<b>Pickup City:</b> "+pickupCity[0].city+"<br/><b>Destination City:</b> " +  destinationCity[0].city;
 		}
 	};
 				
@@ -99,22 +102,26 @@ function init() {
 		
 		
 		
-		//create units (sections)
-		//var oosUnits = scheduler.serverList("oos");
-		//console.log(oosUnits);
-		scheduler.templates.timeline_scale_label = function(key, label, section){
-			
-			var unit = scheduler.getSection(key);
-			if(unit.oos == "0"){ //if not OOS, don't check box
-				var checked = "";
+		//marking timespans for temporary OOS units
+		var oosUnits = scheduler.serverList("oos");
+		scheduler.attachEvent("onXLE", function (){
+			for (var i = 0; i < oosUnits.length; i++) {
+				//console.log(oosUnits[i]);
+				arr =  oosUnits[i].oos_date.split('-');
+				var dateYear = parseInt(arr[0]);
+				var dateMonth = parseInt(arr[1])-1;
+				var dateDay = parseInt(arr[2]);
+				scheduler.addMarkedTimespan({days:new Date(dateYear,dateMonth,dateDay),zones:"fullday",css: "pink", html:"<b> OUT OF SERVICE </>", type: "dhx_time_block", sections: {timeline:oosUnits[i].label}});
+				
 			}
-			else {  //if OOS, check box and block timespan
-				var checked = "checked";
-				scheduler.addMarkedTimespan({days:new Date(),zones:"fullday", css: "pink", html:"<b> OUT OF SERVICE </>", type: "dhx_time_block", sections: {timeline:key}});
-			}
-				var unitHtml = "<input type='checkbox' onclick='markOos("+key+");'"+checked+">";
-			return label + unitHtml;
-}
+		});
+		//mark unit in or out of service when clicking the unit label
+		scheduler.attachEvent("onYScaleClick", function (index, section, e){
+			var formatFunc = scheduler.date.date_to_str("%Y-%m-%d");
+			var markedDate = formatFunc(scheduler._date);
+			dhtmlx.message({type:"confirm",text:"Mark "+section.label+" in service or out of service?", cancel:"In Service",ok:"OOS", callback:function(response){markOosNew(response,section.key,markedDate);}});
+			});
+		
 			
 	//===============
 	//Lightbox and data
@@ -228,31 +235,31 @@ function init() {
 		//init scheduler
 		scheduler.init('scheduler_here',new Date(),"timeline");
 		//load serverlists
-		scheduler.load("codebase/events_tree_db.php");
+		scheduler.load("codebase/events_tree_db.php?uid="+scheduler.uid());
 		//connection to DB and init of connection
-		var dp = new dataProcessor("codebase/events_tree_db.php");
+		var dp = new dataProcessor("codebase/events_tree_db.php?uid="+scheduler.uid());
 		dp.init(scheduler);
-		//dp.setAutoUpdate(12000);
+		//dp.setAutoUpdate(30000);
 	
 		
 	}
 	
 	
-		//show's minical on page
-		function show_minical(){
-			if (scheduler.isCalendarVisible())
-				scheduler.destroyCalendar();
-			else
-				scheduler.renderCalendar({
-					position:"dhx_minical_icon",
-					date:scheduler._date,
-					navigation:true,
-					handler:function(date,calendar){
-						scheduler.setCurrentView(date);
-						scheduler.destroyCalendar()
-					}	
-				});
-		}
+//show's minical on page
+function show_minical(){
+	if (scheduler.isCalendarVisible())
+		scheduler.destroyCalendar();
+	else
+		scheduler.renderCalendar({
+			position:"dhx_minical_icon",
+			date:scheduler._date,
+			navigation:true,
+			handler:function(date,calendar){
+				scheduler.setCurrentView(date);
+				scheduler.destroyCalendar()
+			}	
+		});
+}
 		
 
 	

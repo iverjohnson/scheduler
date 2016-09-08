@@ -63,7 +63,7 @@ html, body{
 			background-color: #7B7D7D !important;
 			text-decoration: line-through !important;
 			border-color: #839595 !important;
-			background-image:none; !important;
+			background-image:none !important;
 		}
 		.dhx_cal_event_clear.event_complete{
 			color:#B82594 !important;

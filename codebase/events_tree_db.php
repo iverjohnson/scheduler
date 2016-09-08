@@ -18,7 +18,7 @@ $appointments = new OptionsConnector($res, $dbtype);
 $appointments->render_table("event_types", "id", "id(value), name(label)");
 
 $scheduler = new SchedulerConnector($res, $dbtype);
-$scheduler->enable_live_update('actions_table');
+//$scheduler->enable_live_update('actions_table');
 $scheduler->set_options("units", $units);
 $scheduler->set_options("facilities", $facilities);
 $scheduler->set_options("oos", $oos);

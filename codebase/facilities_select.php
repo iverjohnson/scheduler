@@ -2,7 +2,7 @@
 	require_once(dirname(__FILE__).'/connector/combo_connector.php');
 	require_once('config.php');
 	
-$combo = new ComboConnector($res, $dbtype);
+$combo = new Connector($res, $dbtype);
 $combo->event->attach("beforeFilter", "by_id");
     function by_id($filter) {
         if (isset($_GET['id']))

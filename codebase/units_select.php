@@ -20,10 +20,11 @@
 		//$list->sql->attach("Update","UPDATE units SET oos='{oos}' WHERE id={id}");
 	} 
 	elseif ($action=='Delete'){
-		$sql = "DELETE from oos WHERE unit_id=".$id." AND oos_date=".$oos_date;
+		$sql = "DELETE from oos WHERE unit_id=".$id." AND oos_date=STR_TO_DATE('".$oos_date."','%Y-%m-%d')";
 		$otherfields = "unit_id,oos_date";
+		//$list->sql->attach("Delete", "DELETE FROM oos WHERE unit_id = {id} AND oos_date = {oos_date}");
 	}
 	
 	$list->enable_log("log1.txt",true);
-	$list->render_sql($sql,"id",$otherfields);
+	$list->render_complex_sql($sql,"id",$otherfields);
 ?>
