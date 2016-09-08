@@ -33,6 +33,15 @@ html, body{
 		.dhx_cal_event_clear.event_201{
 			color:#36BD14 !important;
 		}
+		
+		.dhx_cal_event.event_216 div, .dhx_cal_event_line.event_216{
+			background-color: yellow !important;
+			border-color: #a36800 !important;
+			background-image:none; !important;
+		}
+		.dhx_cal_event_clear.event_216{
+			color:yellow !important;
+		}
 
 		.dhx_cal_event.event_202 div, .dhx_cal_event_line.event_202{
 			background-color: #FC5BD5 !important;
@@ -108,3 +117,6 @@ html, body{
 	.dhx_cal_navline .dhx_cal_date, .dhx_cal_navline div {
 		top:0 !important;
 		}
+	.dhx_matrix_cell:nth-child(4n){
+		border-right:1px solid #868686 !important;
+	}
